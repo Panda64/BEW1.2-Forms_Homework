@@ -13,6 +13,10 @@
 
 <p><strong>Created By: {{ current_user.username }}</strong></p>
 
+<form action="/add_to_shopping_list" method="POST">
+    <button name="add-to-shopping-list" value="{{ item }}">Add Item to Cart</button>
+</form>
+
 
 <h2>Edit Item</h2>
 

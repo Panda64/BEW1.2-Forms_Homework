@@ -1,7 +1,9 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from datetime import date, datetime
-from grocery_app.models import GroceryStore, GroceryItem
-from grocery_app.forms import GroceryStoreForm, GroceryItemForm
+from flask_login import login_user, logout_user, login_required, current_user
+from grocery_app.models import GroceryStore, GroceryItem, User
+from grocery_app.forms import GroceryStoreForm, GroceryItemForm, SignUpForm, LoginForm
+from grocery_app import bcrypt
 # from grocery_app.forms import BookForm, AuthorForm, GenreForm
 
 # Import app and db from events_app package so that we can run app
@@ -107,6 +109,19 @@ def item_detail(item_id):
     
     item = GroceryItem.query.get(item_id)
     return render_template('item_detail.html', item=item, form=form)
+
+
+@main.route('/add_to_shopping_list/<item_id>', methods=['POST'])
+def add_to_shopping_list(item_id):
+    # ... adds item to current_user's shopping list
+    pass
+
+@main.route('/shopping_list')
+@login_required
+def shopping_list():
+    # ... get logged in user's shopping list items ...
+    # ... display shopping list items in a template ...
+    pass
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
